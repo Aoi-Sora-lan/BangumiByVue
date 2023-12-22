@@ -34,7 +34,6 @@ export default {
   }
   ,
   mounted() {
-    console.log(this.anime_index)
     axios.get('https://api.bgm.tv/v0/subjects/'+this.anime_index.toString(),
       {
         'User-Agent':'AoiSora/BangumiByVue (https://github.com/Aoi-Sora-lan/BangumiByVue)',

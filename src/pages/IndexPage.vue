@@ -42,7 +42,6 @@ export default defineComponent({
     }
   },
   mounted() {
-    console.log("test")
     let day_index = new Date().getDay() - 1
     axios.get('https://api.bgm.tv/calendar',
       {
