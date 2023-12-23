@@ -1,7 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-
-    <q-header elevated class="bg-primary text-white" height-hint="98">
+    <q-header elevated class="bg-black text-grey-2" height-hint="98">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -21,7 +20,6 @@
     <q-page-container>
       <router-view></router-view>
     </q-page-container>
-
   </q-layout>
 </template>
 

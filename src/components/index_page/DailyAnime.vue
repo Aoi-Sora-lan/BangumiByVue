@@ -5,7 +5,7 @@
         <div v-if="name_show" class="absolute-center text-left" style="width: 100%;height: 100%; padding: 5px 5px;">
           {{anime_name}}
         </div>
-        <div v-if="!name_show" class="absolute-bottom text-left" style="padding: 0px 5px;width: 100%;text-overflow: ellipsis;overflow:hidden;white-space: nowrap ">
+        <div v-if="!name_show" class="absolute-bottom text-left" style="padding: 0px 5px;width: 100%;text-overflow: ellipsis;overflow:hidden;white-space: nowrap">
           {{anime_name}}
         </div>
         <div v-if="!name_show" class="absolute-top-right text-right" style="padding: 0px 5px;">

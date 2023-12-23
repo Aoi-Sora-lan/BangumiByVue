@@ -11,7 +11,13 @@ const routes = [
     path: '/subject/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/AnimePage.vue')}
+      {
+        path: '',
+        component: () => import('layouts/AnimeLayout.vue'),
+        children:[
+          {path:'',component:()=>import('pages/AnimePage.vue')}
+        ]
+      }
     ]
   },
   // Always leave this as last one,

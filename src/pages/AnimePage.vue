@@ -1,8 +1,8 @@
 <template>
   <div class="row flex-center" style="width: 100%">
-    <div class="q-pa-md flex" style="max-width: 1000px">
+    <div class="q-py-md flex" style="max-width: 1000px">
       <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
           <div class="row q-mt-xs">
             <q-img :src="pic_src"></q-img>
           </div>
@@ -10,7 +10,7 @@
             <info-box :anime_data="anime_data"></info-box>
           </div>
         </div>
-        <div class="col-9 q-pa-sm">
+        <div class="col-12 col-md-9 q-pa-sm">
           <div class="row text-h5">番剧简介</div>
           <q-separator class="q-my-md"></q-separator>
           <div class="row text-body1 q-mb-md">
@@ -19,7 +19,7 @@
           <div class="row text-h5">番剧列表</div>
           <q-separator class="q-my-md"></q-separator>
           <div class="row  q-mb-md">
-            <q-card v-for="episode in episode_data" :key="episode" flat bordered style="width: 200px;margin: 1px 1px">
+            <q-card v-for="episode in episode_data" :key="episode" flat bordered style="width: 200px;margin: 5px 5px">
               <q-card-section style="padding: 5px 10px">
                 <div class="text-h6">{{episode.ep}}</div>
                 <div class="text-subtitle2">{{episode.name_cn}}</div>
@@ -48,10 +48,17 @@ import common from "../funcs/anime_page/common"
 import anime_interfaces from "src/funcs/anime_interfaces";
 import { QScrollArea } from "quasar";
 import chara_card from "components/anime_page/CharaCard.vue";
+import {useCounterStore} from "stores/loading_anime";
 
 export default {
   name: "AnimePage",
   components: { chara_card, InfoBox },
+  methods:{
+    emit_name(name){
+      console.log("244");
+      this.$emit('on_emit_name', name);
+    }
+  },
   data(){
     return{
       id:0,
@@ -60,7 +67,8 @@ export default {
       anime_data: null,
       anime_desc: "",
       anime_characters:[],
-      episode_data:[]
+      episode_data:[],
+      store:null
     }
   },
   created() {
@@ -71,6 +79,7 @@ export default {
         anime_interfaces.get_subject(this.id,(data)=>
         {
           this.anime_data = data;
+          this.emit_name(data.name);
           this.pic_src = data.images.common;
           this.anime_desc = data.summary;
         });
@@ -82,6 +91,8 @@ export default {
       this.anime_data = data;
       this.pic_src = data.images.common;
       this.anime_desc = data.summary;
+      let store = useCounterStore();
+      store.name = data.name;
     });
     anime_interfaces.get_characters(this.id,(data)=>{
       this.anime_characters = common.get_characters_from_data(data);
