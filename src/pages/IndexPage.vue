@@ -30,6 +30,7 @@ import { defineComponent } from 'vue'
 import JsonGet from "components/JsonGet.vue";
 import DailyAnime from "components/index_page/DailyAnime.vue";
 import axios from "axios";
+import anime_interfaces from "src/funcs/anime_interfaces";
 
 export default defineComponent({
   name: 'IndexPage',

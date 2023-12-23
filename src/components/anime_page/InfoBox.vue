@@ -18,42 +18,35 @@ import axios from "axios";
 export default {
   name: "InfoBox",
   props:{
-    anime_index:{
-      type:Number,
+    anime_data:{
+      type:Object,
       required:true
     }
   },
   data(){
     return {
-      anime_infos: null,
+      anime_infos: [],
     }
   },
   created() {
     this.$watch(
-      () => this.$route.params,
+      () => this.anime_data,
       (toParams, previousParams) => {
-        console.log(this.anime_index)
-        axios.get('https://api.bgm.tv/v0/subjects/'+this.anime_index,
-          {
-            'User-Agent':'AoiSora/BangumiByVue (https://github.com/Aoi-Sora-lan/BangumiByVue)',
-          }).then(({data})=> {
-            this.anime_infos.splice(0)
-            for (let i in data.infobox){
-              this.anime_infos.push(data.infobox[i]);
-            }
-          console.log(this.anime_index)
-        });
+        console.log("child-watch-on");
+        //console.log(this.anime_data)
+        if(this.anime_infos.length!=0){
+          this.anime_infos.splice(0);
+        }
+        let data = this.anime_data
+        for (let i in data.infobox){
+          this.anime_infos.push(data.infobox[i]);
+        }
+        console.log(this.anime_infos)
       }
     )
   },
   mounted() {
-    axios.get('https://api.bgm.tv/v0/subjects/'+this.anime_index.toString(),
-      {
-        'User-Agent':'AoiSora/BangumiByVue (https://github.com/Aoi-Sora-lan/BangumiByVue)',
-      }).then(({data})=> {
-      this.anime_infos = data.infobox;
-      console.log(this.anime_infos);
-    });
+    console.log("child-mount-on");
   }
 };
 </script>
