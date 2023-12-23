@@ -9,7 +9,7 @@
         <div class="col-12">
           <q-input rounded outlined color="blue-12" v-model="text">
             <template v-slot:append>
-              <q-icon name="search" ></q-icon>
+              <q-icon name="search"></q-icon>
             </template>
           </q-input>
         </div>
