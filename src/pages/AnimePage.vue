@@ -92,14 +92,27 @@ export default {
       this.pic_src = data.images.common;
       this.anime_desc = data.summary;
       let store = useCounterStore();
-      store.name = data.name;
+      if(data.name_cn!=""){
+        store.name = data.name_cn;
+      }
+      else{
+        store.name = data.name;
+      }
     });
     anime_interfaces.get_characters(this.id,(data)=>{
       this.anime_characters = common.get_characters_from_data(data);
       console.log(this.anime_characters)
     });
     anime_interfaces.get_episodes(this.id,(data)=>{
-      this.episode_data = data.data;
+      if(this.episode_data.length!==0){
+        this.episode_data.splice(0);
+      }
+      for (let i in data.data){
+        console.log(data.data[i]);
+        if(data.data[i].name_cn!==''){
+          this.episode_data.push(data.data[i]);
+        }
+      }
     });
     //common.search_page("盾之")
   }

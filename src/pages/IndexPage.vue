@@ -43,7 +43,8 @@ export default defineComponent({
     }
   },
   mounted() {
-    let day_index = new Date().getDay() - 1
+    let day_index = (new Date().getDay()+6)%7;
+    console.log(day_index);
     axios.get('https://api.bgm.tv/calendar',
       {
         'User-Agent':'AoiSora/BangumiByVue (https://github.com/Aoi-Sora-lan/BangumiByVue)',
