@@ -6,10 +6,12 @@
         </q-img>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col">
           <q-input rounded outlined color="blue-12" v-model="text">
             <template v-slot:append>
-              <q-icon name="search"></q-icon>
+              <router-link :to="'/search/2/'+text">
+                <q-btn rounded class="bg-pink-2 text-white" icon="search"></q-btn>
+              </router-link>
             </template>
           </q-input>
         </div>

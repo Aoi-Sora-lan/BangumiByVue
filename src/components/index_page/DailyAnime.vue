@@ -39,7 +39,8 @@ export default {
   mounted() {
     anime_interfaces.get_subject(this.anime_index,(data)=>{
       console.log(data);
-      this.anime_name = data.name_cn;
+      if(data.name_cn!=='') this.anime_name = data.name_cn;
+      else this.anime_name = data.name;
       this.anime_picture = data.images.common;
       this.anime_score = data.rating.score;
       console.log(data.images.common);

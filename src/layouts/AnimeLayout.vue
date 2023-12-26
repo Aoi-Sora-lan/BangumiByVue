@@ -4,13 +4,12 @@
       <div class="text-h4">{{ anime_name }}</div>
     </div>
     <div class="q-pa-none col-12 flex">
-      <q-toolbar class="flex-center bg-grey-4 text-black" >
+      <q-toolbar class="flex-center bg-pink-1 text-black" >
         <div class="flex" style="max-width: 1000px;width: 100%">
           <q-tabs v-model="tab" shrink>
-            <q-tab name="tab1" label="概览" />
-            <q-tab name="tab2" label="章节" />
-            <q-tab name="tab3" label="角色" />
-            <q-tab name="tab4" label="制作人员" />
+            <q-route-tab :to="'/subject/'+$route.params.id" name="tab1" label="概览" />
+            <q-route-tab :to="'/subject/'+$route.params.id+'/episodes'" name="tab2" label="章节" />
+            <q-route-tab :to="'/subject/'+$route.params.id+'/characters'" name="tab3" label="角色" />
           </q-tabs>
         </div>
       </q-toolbar>
